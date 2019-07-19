@@ -1,6 +1,6 @@
 # cash
 
-A project to manage yout bills in the palm of your hand.
+A project to manage your bills in the palm of your hand.
 
 ## Getting Started
 
