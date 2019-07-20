@@ -1,9 +1,9 @@
-class Categorie {
+class Category {
   //categories(id, name)
   int _id;
   String _name;
 
-  Categorie(this._id, this._name);
+  Category(this._id, this._name);
 
   int getId() {
     return this._id;

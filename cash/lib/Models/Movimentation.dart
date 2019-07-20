@@ -7,7 +7,7 @@ class Movimentation {
   String _type;
   double _value;
   DateTime _date;
-  Categorie _categorie;
+  Category _categorie;
   User _user;
 
   Movimentation(this._id, this._type, this._value, this._date, this._categorie,
@@ -45,11 +45,11 @@ class Movimentation {
     this._date = dateTime;
   }
 
-  Categorie getCategorie(Categorie categorie) {
+  Category getCategorie(Category categorie) {
     return this._categorie;
   }
 
-  setCategoria(Categorie categorie) {
+  setCategoria(Category categorie) {
     this._categorie = categorie;
   }
 
