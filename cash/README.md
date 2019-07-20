@@ -1,6 +1,6 @@
 # cash
 
-A new Flutter project.
+A project to manage your bills in the palm of your hand.
 
 ## Getting Started
 
