@@ -2,19 +2,19 @@ import 'package:cash/Components/CustomInputText.dart';
 import 'package:flutter/material.dart';
 import 'package:cash/Utils/MyColors.dart';
 
-import 'RegisterPage.dart';
+class RegisterPage extends StatefulWidget {
+  RegisterPage({Key key}) : super(key: key);
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
-
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final emailField = new CustomInputText.withInputType(
       "Insert your email...", "Email", TextInputType.emailAddress);
-  final passwordField = new CustomInputText.withCounterAndObscure(
-      "Insert your password...", "Password", "Forgot your password?");
+  final passwordField =
+      new CustomInputText.withObscure("Insert your password...", "Password");
+
+  final nameField = new CustomInputText("Insert your name...", "Full name");
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Welcome,",
+                    "Create Account",
                     style: TextStyle(
                       color: MyColors.black,
                       fontSize: 40,
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Text(
-                    "Sign in to continue!",
+                    "Sign up to get started!",
                     style: TextStyle(
                       color: MyColors.gray,
                       fontSize: 20,
@@ -56,6 +56,8 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.only(top: 50),
                 child: Column(
                   children: <Widget>[
+                    nameField,
+                    SizedBox(height: 10),
                     emailField,
                     SizedBox(height: 10),
                     passwordField,
@@ -97,20 +99,16 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  "I'm a new user. ",
+                                  "I'm already a user. ",
                                   style: TextStyle(
                                       color: MyColors.black, fontSize: 18),
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => RegisterPage()),
-                                    );
+                                    Navigator.pop(context);
                                   },
                                   child: Text(
-                                    "Sign Up!",
+                                    "Log In!",
                                     style: TextStyle(
                                         color: MyColors.orange, fontSize: 18),
                                   ),

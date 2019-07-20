@@ -1,7 +1,6 @@
+import 'package:cash/Screens/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'Screens/LoginPage.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
