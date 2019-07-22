@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:cash/Components/CustomInputText.dart';
+import 'package:cash/DAO/UserDAO.dart';
+import 'package:cash/Models/User.dart';
+import 'package:cash/Screens/SummaryPage.dart';
+import 'package:cash/Utils/TextUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:cash/Utils/MyColors.dart';
 
@@ -15,6 +21,23 @@ class _LoginPageState extends State<LoginPage> {
       "Insert your email...", "Email", TextInputType.emailAddress);
   final passwordField = new CustomInputText.withCounterAndObscure(
       "Insert your password...", "Password", "Forgot your password?");
+
+  void doLogin(BuildContext context) async {
+    var user = User(
+        email: emailField.getText(),
+        password: Textutils.textToMd5(passwordField.getText()));
+    UserDAO.login(user).then((value) {
+      print(value.body);
+
+      if (value.statusCode == 200) {
+        Map<String, dynamic> response = jsonDecode(value.body);
+        var loggedUser = User(id: response["user_id"], name: response["name"]);
+
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => SummaryPage(loggedUser)));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,13 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           InkWell(
-                            onTap: () {
-                              print("Email: " +
-                                  emailField.getText() +
-                                  "\n " +
-                                  "Password: " +
-                                  passwordField.getText());
-                            },
+                            onTap: () => doLogin(context),
                             child: Container(
                               height: 50,
                               decoration: BoxDecoration(
