@@ -5,8 +5,16 @@ class User {
   String name;
   String email;
   String password;
+  int balance;
+  bool positiveBalance;
 
-  User({this.id, this.name, this.email, this.password});
+  User(
+      {this.id,
+      this.name,
+      this.email,
+      this.password,
+      this.balance,
+      this.positiveBalance});
 
   int getId() {
     return this.id;

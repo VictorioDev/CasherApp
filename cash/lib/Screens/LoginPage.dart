@@ -17,22 +17,32 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool loading = false;
   final emailField = new CustomInputText.withInputType(
       "Insert your email...", "Email", TextInputType.emailAddress);
   final passwordField = new CustomInputText.withCounterAndObscure(
       "Insert your password...", "Password", "Forgot your password?");
 
   void doLogin(BuildContext context) async {
-    var user = User(
+    /*var user = User(
         email: emailField.getText(),
         password: Textutils.textToMd5(passwordField.getText()));
+    setState(() {
+      loading = true;
+    });*/
+    var user = User(
+        email: "victorio@gmail.com", password: Textutils.textToMd5("123456"));
+    setState(() {
+      loading = true;
+    });
     UserDAO.login(user).then((value) {
       print(value.body);
-
-      if (value.statusCode == 200) {
-        Map<String, dynamic> response = jsonDecode(value.body);
+      Map<String, dynamic> response = jsonDecode(value.body);
+      setState(() {
+        loading = false;
+      });
+      if (value.statusCode == 200 && !response.containsKey("error")) {
         var loggedUser = User(id: response["user_id"], name: response["name"]);
-
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => SummaryPage(loggedUser)));
       }
@@ -92,7 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                           InkWell(
                             onTap: () => doLogin(context),
                             child: Container(
-                              height: 50,
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              height: 60,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                     colors: [MyColors.red, MyColors.orange]),
@@ -100,11 +111,18 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               child: Align(
                                 alignment: Alignment.center,
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: MyColors.white, fontSize: 18),
-                                ),
+                                child: loading
+                                    ? CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                                MyColors.white),
+                                      )
+                                    : Text(
+                                        "Login",
+                                        style: TextStyle(
+                                            color: MyColors.white,
+                                            fontSize: 18),
+                                      ),
                               ),
                             ),
                           ),
