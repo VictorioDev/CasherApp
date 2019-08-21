@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:cash/DAO/UserDAO.dart';
 import 'package:cash/Models/User.dart';
-import 'package:cash/Screens/MovimentationsPage.dart';
+import 'package:cash/Pages/MovimentationsPage.dart';
 import 'package:cash/Utils/MyColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;

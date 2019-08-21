@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:cash/Components/CustomInputText.dart';
 import 'package:cash/DAO/UserDAO.dart';
 import 'package:cash/Models/User.dart';
-import 'package:cash/Screens/SummaryPage.dart';
+import 'package:cash/Pages/SummaryPage.dart';
 import 'package:cash/Utils/TextUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:cash/Utils/MyColors.dart';
@@ -52,9 +52,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
         color: MyColors.white,
         padding: EdgeInsets.all(20),
         child: Column(

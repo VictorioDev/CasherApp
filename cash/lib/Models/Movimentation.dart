@@ -1,32 +1,39 @@
-import 'package:cash/Models/Categorie.dart';
+import 'package:cash/Models/Category.dart';
 import 'package:cash/Models/User.dart';
 
 class Movimentation {
   //movimentation(id, type [C, D], value, date, category_id)
-  int _id;
-  String _type;
-  double _value;
-  DateTime _date;
-  Category _categorie;
-  User _user;
+  int id;
+  String type;
+  double value;
+  DateTime date;
+  Category categorie;
+  String name;
+  User user;
 
-  Movimentation(this._id, this._type, this._value, this._date, this._categorie,
-      this._user);
+  Movimentation(
+      {this.id,
+      this.type,
+      this.name,
+      this.value,
+      this.date,
+      this.categorie,
+      this.user});
 
   int getId() {
-    return this._id;
+    return this.id;
   }
 
   setId(int id) {
-    this._id = id;
+    this.id = id;
   }
 
   String getType() {
-    return this._type;
+    return this.type;
   }
 
   setType(String type) {
-    this._type = type;
+    this.type = type;
   }
 
   double getValue() {
@@ -34,7 +41,7 @@ class Movimentation {
   }
 
   setValue(double value) {
-    this._value = value;
+    this.value = value;
   }
 
   DateTime getDate() {
@@ -42,22 +49,41 @@ class Movimentation {
   }
 
   setDate(DateTime dateTime) {
-    this._date = dateTime;
+    this.date = dateTime;
   }
 
   Category getCategorie(Category categorie) {
-    return this._categorie;
+    return this.categorie;
   }
 
   setCategoria(Category categorie) {
-    this._categorie = categorie;
+    this.categorie = categorie;
   }
 
   User getUser() {
-    this._user;
+    this.user;
   }
 
   setUser(User user) {
-    this._user = user;
+    this.user = user;
+  }
+
+  Map toMapNew() {
+    var map = Map<String, dynamic>();
+    /*
+      "user_id": 1,
+	"type": "D",
+	"name": "Foo bar",
+	"value": 99.21,
+	"date": "2019-08-20 21:23:12",
+	"category_id": 1
+     */
+    map['name'] = this.name;
+    map['value'] = this.value.toString();
+    map['category_id'] = this.categorie.getId().toString();
+    map['type'] = this.type;
+    map['user_id'] = this.user.id.toString();
+
+    return map;
   }
 }
